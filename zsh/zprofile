@@ -1,0 +1,10 @@
+# If running from tty1 start sway
+[ "$(tty)" = "/dev/tty3" ] && exec sway
+
+export EDITOR="nvim"
+export TERMINAL="kitty"
+export TERM="kitty"
+export BROWSER="firefox"
+export FILE="joshuto"
+
+export ZDOTDIR="$HOME/dotfiles/zsh/"

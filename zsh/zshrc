@@ -1,0 +1,126 @@
+unsetopt BEEP
+setopt braceccl
+setopt autocd
+setopt complete_in_word
+
+export EDITOR=nvim
+export TERM=kitty
+
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+
+# add newline after every command
+precmd() {
+    precmd() {
+        echo
+    }
+}
+# custom prompt
+autoload -U colors && colors
+PROMPT="%{$fg[green]%}%~$reset_color%}"$'\n> '
+
+chpwd() { ls }
+
+# autojump cmpletion
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle '*:compinit' arguments -D -i -u -C -w
+zstyle ':completion:*' recent-dirs-insert always
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+# history file
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.cache/zsh/history
+BROWSER='/usr/bin/firefox'
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[1 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    echo -ne "\e[1 q"
+}
+zle -N zle-line-init
+echo -ne '\e[1 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[1 q' ;} # Use beam shape cursor for each new prompt.
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+[ -f "$HOME/dotfiles/zsh/aliases" ] && source "$HOME/dotfiles/zsh/aliases"
+
+
+# KEY BINDINGS
+# bindings for history substring search
+#bindkey '\e[A' history-substring-search-up
+#bindkey '\e[B' history-substring-search-down
+# bindings from Luke Smith
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+# Use vim keys in tab complete menu:
+bindkey -M menuselect "h" vi-backward-char
+bindkey -M menuselect "k" vi-up-line-or-history
+bindkey -M menuselect "l" vi-forward-char
+bindkey -M menuselect "j" vi-down-line-or-history
+bindkey -v "^?" backward-delete-char
+
+
+# zsh parameter completion for the dotnet CLI
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  # If the completion list is empty, just continue with filename selection
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+
+  # This is not a variable assignment, don't remove spaces!
+  _values = "${(ps:\n:)completions}"
+}
+
+compdef _dotnet_zsh_complete dotnet
+
+# make enter accept the line immediately
+bindkey -M menuselect "\r" .accept-line
+# make tab cycle the options (useful for autocomplete above)
+bindkey "\t" menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect "\t" menu-complete "$terminfo[kcbt]" reverse-menu-complete
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/dev/zsh-stuff/zsh-history-substring-search/zsh-history-substring-search.zsh
+#
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+#source ~/dev/zsh-stuff/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# opam configuration
+[[ ! -r /home/daedalus/.opam/opam-init/init.zsh ]] || source /home/daedalus/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+[ -f "/home/daedalus/.ghcup/env" ] && source "/home/daedalus/.ghcup/env" # ghcup-env
