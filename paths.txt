@@ -1,4 +1,8 @@
-/home/daedalus/dotfiles/zshrc/zshrc /home/daedalus/.zshrc
+/home/daedalus/dotfiles/zsh/zshrc /home/daedalus/.zshrc
 /home/daedalus/dotfiles/tmux/tmux.conf /home/daedalus/.tmux.conf
 /home/daedalus/dotfiles/zsh/zprofile /home/daedalus/.zprofile
-/home/daedalus/dotfiles/tofi-sway/config /home/daedalus/.config/tofi/config
+/home/daedalus/dotfiles/tofi/ /home/daedalus/.config/tofi
+/home/daedalus/dotfiles/kitty/ /home/daedalus/.config/kitty
+/home/daedalus/dotfiles/i3/ /home/daedalus/.config/i3
+/home/daedalus/dotfiles/nvim /home/daedalus/.config/nvim
+/home/daedalus/dotfiles/alacritty /home/daedalus/.config/alacritty

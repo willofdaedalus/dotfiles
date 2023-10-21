@@ -14,11 +14,17 @@ while read -r source_path symlink_path; do
     create_directory_if_not_exists "$destination_dir"
 
     # Check if the symlink already exists
-    if [ -L "$symlink_path" ]; then
-        echo "Symlink already exists for $symlink_path"
+    if [ -e "$symlink_path" ]; then
+        echo "Config already exists at $symlink_path"
     else
-        # Create the symlink
-        ln -s "$source_path" "$symlink_path"
-        echo "Created symlink from $source_path to $symlink_path"
+        if [ -d "$source_path" ]; then
+            # If source_path is a directory, symlink the contents to the destination directory
+            ln -sT "$source_path" "$symlink_path"
+            echo "Created symlink from $source_path to $symlink_path"
+        else
+            # If source_path is a file, symlink the file directly
+            ln -s "$source_path" "$symlink_path"
+            echo "Created symlink from $source_path to $symlink_path"
+        fi
     fi
 done < paths.txt
