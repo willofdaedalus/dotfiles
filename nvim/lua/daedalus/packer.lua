@@ -7,17 +7,12 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use ('wbthomason/packer.nvim')
 
-	use {
-	use('ThePrimeagen/harpoon')
-		'nvim-telescope/telescope.nvim', tag = '0.1.x',
-		-- or                            , branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
 	use{
 		'lukas-reineke/indent-blankline.nvim',
 		commit = "9637670",
 	}
 
+	use('RRethy/vim-hexokinase')
 	use('navarasu/onedark.nvim')
 	use('nvim-lualine/lualine.nvim')
 	use('mbbill/undotree')
@@ -30,6 +25,7 @@ return require('packer').startup(function(use)
 	use('davisdude/vim-love-docs')
 	use('OmniSharp/omnisharp-vim')
 	use('ThePrimeagen/harpoon')
+	use('vimwiki/vimwiki')
 
 	use {
 		'goolord/alpha-nvim',

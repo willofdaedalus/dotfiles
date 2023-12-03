@@ -187,7 +187,7 @@ default_border pixel 0
 client.focused #ff00ff #772828 #ffffff #ff00ff #772828
 
 # start the compositor
-exec_always picom
+exec_always picom --config ~/.config/picom/picom.conf
 exec_always backlight
 
 gaps inner 1
@@ -214,10 +214,10 @@ bindsym XF86AudioPrev exec playerctl previous
 #exec i3-layouts
 
 # lock screen
-bindsym $mod+Ctrl+l exec i3lock -u -f -k --date-str=\"%a %d %b %Y\" --time-str="%H:%M" -i ~/media/wallpapers/wallhaven-z8o81v.jpg -F --greeter-text=\"please don't touch anything\" --greeter-size=25
+bindsym $mod+Ctrl+l exec i3lock -u -k -e --date-str=\"%a %d %b %Y\" --time-str="%H:%M" -i ~/media/wallpapers/wallhaven-3l2pp9.jpg -F
 
 # thinkpad wallpaper :)
-exec feh --bg-fill ~/media/wallpapers/thinkpad.png
+exec feh --randomize --bg-fill ~/media/wallpapers/
 # random wallpaper
 bindsym $mod+g exec feh --randomize --bg-fill ~/media/wallpapers/
 # change titlebar colours

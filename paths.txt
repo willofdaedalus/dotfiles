@@ -6,3 +6,4 @@
 /home/daedalus/dotfiles/i3/ /home/daedalus/.config/i3
 /home/daedalus/dotfiles/nvim /home/daedalus/.config/nvim
 /home/daedalus/dotfiles/alacritty /home/daedalus/.config/alacritty
+/home/daedalus/dotfiles/vimrc /home/daedalus/.vimrc
