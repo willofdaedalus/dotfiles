@@ -12,7 +12,6 @@ return require('packer').startup(function(use)
 		commit = "9637670",
 	}
 
-	use('RRethy/vim-hexokinase')
 	use('navarasu/onedark.nvim')
 	use('nvim-lualine/lualine.nvim')
 	use('mbbill/undotree')
@@ -44,6 +43,12 @@ return require('packer').startup(function(use)
 			require('Comment').setup()
 		end
 	}
+
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.5',
+        -- or                            , branch = '0.1.x',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',

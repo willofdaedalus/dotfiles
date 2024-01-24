@@ -42,7 +42,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty -e tmux
 
 # kill focused window
 bindsym $mod+q kill
@@ -236,7 +236,7 @@ bar {
 # ASSIGNMENTS
 assign [class="firefox"] 1
 assign [class="kitty"] 2
-assign [class="alacritty"] 2
+assign [class="Alacritty"] 2
 for_window [class="Spotify"] move to workspace $ws3
 assign [class="unityhub"] 4
 assign [class="Unity"] 4

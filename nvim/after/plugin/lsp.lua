@@ -11,9 +11,9 @@ local cmp_action = require('lsp-zero').cmp_action()
 cmp.setup({
 	preselect = 'item',
 	completion = {
-		--completeopt = 'menu,menuone,noinsert'
-        keyword_length = 0,
-        autocomplete = false,
+		completeopt = 'menu,menuone,noinsert'
+        --keyword_length = 0,
+        --autocomplete = false,
 	},
 	mapping = {
 		['<CR>'] = cmp.mapping.confirm({select = true}),
