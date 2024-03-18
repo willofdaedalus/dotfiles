@@ -8,11 +8,11 @@ export TERM=kitty
 
 export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1
 export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
-export LSAN_OPTIONS=verbosity=1:log_threads=1:symbolize=0
+export LSAN_OPTIONS=verbosity=1:log_threads=1
+
 
 export DOTNET_ROOT=$HOME/.dotnet
-export JDTLS_BIN=$HOME/.local/share/jdtls/
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools:$JDTLS_BIN/bin/:~/.config/emacs/bin:~/.local/share/gem/ruby/3.0.0/bin:
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools:~/.config/emacs/bin:~/.local/share/gem/ruby/3.0.0/bin:
 export PATH=/home/daedalus/.nimble/bin:$PATH
 
 
@@ -132,6 +132,13 @@ source ~/dev/zsh-stuff/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 [[ ! -r /home/daedalus/.opam/opam-init/init.zsh ]] || source /home/daedalus/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 [ -f "/home/daedalus/.ghcup/env" ] && source "/home/daedalus/.ghcup/env" # ghcup-env
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export DOTNET_TRY_CLI_TELEMETRY_OPTOUT=1
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# airbnb project
+export HBNB_TYPE_STORAGE="db"
+export HBNB_ENV="db"
+export HBNB_MYSQL_USER="hbnb_dev"
+export HBNB_MYSQL_PWD="hbnb_dev_pwd"
+export HBNB_MYSQL_HOST="localhost"
+export HBNB_MYSQL_DB="hbnb_dev_db"
+eval "$(zoxide init zsh)"

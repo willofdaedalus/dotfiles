@@ -17,6 +17,7 @@ vim.opt.scrolloff = 8
 vim.opt.showmode = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
-vim.opt.nf = alpha,bin,hex,unsigned
+vim.opt.nf = alpha
 
 vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3

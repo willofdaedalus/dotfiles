@@ -16,9 +16,10 @@ cmp.setup({
         --autocomplete = false,
 	},
 	mapping = {
-		['<CR>'] = cmp.mapping.confirm({select = true}),
-		['<Tab>'] = cmp_action.tab_complete(),
-		['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

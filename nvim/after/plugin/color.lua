@@ -4,7 +4,7 @@ require('onedark').setup {
 }
 require('onedark').load()
 
-function ColorMyPencils(color)
+function EnableBackColor(color)
 	color = color or "onedark"
 	vim.cmd.colorscheme(color)
 
@@ -13,4 +13,4 @@ function ColorMyPencils(color)
 
 end
 
-ColorMyPencils()
+EnableBackColor()

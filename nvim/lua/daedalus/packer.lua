@@ -13,6 +13,9 @@ return require('packer').startup(function(use)
 	}
 
 	use('navarasu/onedark.nvim')
+	use('wakatime/vim-wakatime')
+	use('vlime/vlime')
+	use('github/copilot.vim')
 	use('nvim-lualine/lualine.nvim')
 	use('mbbill/undotree')
 	use('tpope/vim-fugitive')
@@ -24,7 +27,10 @@ return require('packer').startup(function(use)
 	use('davisdude/vim-love-docs')
 	use('OmniSharp/omnisharp-vim')
 	use('ThePrimeagen/harpoon')
+	use('joshdick/onedark.vim')
+	use('mfussenegger/nvim-dap')
 	use('vimwiki/vimwiki')
+	use('mfussenegger/nvim-jdtls')
 
 	use {
 		'goolord/alpha-nvim',
