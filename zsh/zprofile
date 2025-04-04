@@ -1,5 +1,5 @@
-# If running from tty1 start sway
-[ "$(tty)" = "/dev/tty3" ] && exec sway
+# If running from tty1 start bspwm
+[ "$(tty)" = "/dev/tty1" ] && exec startx
 
 export EDITOR="nvim"
 export TERMINAL="kitty"
@@ -8,3 +8,6 @@ export BROWSER="firefox"
 export FILE="joshuto"
 
 export ZDOTDIR="$HOME/dotfiles/zsh/"
+
+# Added by `rbenv init` on Thu Dec 12 18:23:21 GMT 2024
+eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"

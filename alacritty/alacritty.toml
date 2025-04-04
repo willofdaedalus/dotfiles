@@ -1,5 +1,3 @@
-working_directory = "None"
-
 [cursor]
 unfocused_hollow = true
 vi_mode_style = "block"
@@ -12,23 +10,57 @@ shape = "Block"
 TERM = "alacritty"
 
 [font]
-size = 13.0
+size = 9.5
 
 [font.normal]
 family = "Iosevka"
+# family = "FixedSys Excelsior"
 
 [scrolling]
 multiplier = 6
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 
 [window]
 decorations = "none"
 dynamic_padding = true
-opacity = 0.8
+# opacity = 0.8
 title = "Alacritty"
 
 [window.dimensions]
 columns = 20
 lines = 20
+
+[general]
+working_directory = "None"
+
+# Windows 95 Color Scheme
+# To have the authentic experience in Chicago95 GTK Theme.
+
+# Default colors
+[colors.primary]
+background = '#000000'
+foreground = '#C0C7C8'
+
+# Normal colors
+[colors.normal]
+black   = '#000000'
+red     = '#A80000'
+green   = '#00A800'
+yellow  = '#A85400'
+blue    = '#0000A8'
+magenta = '#A800A8'
+cyan    = '#00A8A8'
+white   = '#A8A8A8'
+
+# Bright colors
+[colors.bright]
+black   = '#545454'
+red     = '#FC5454'
+green   = '#54FC54'
+yellow  = '#FCFC54'
+blue    = '#5454FC'
+magenta = '#FC54FC'
+cyan    = '#54FCFC'
+white   = '#FFFFFF'

@@ -39,7 +39,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 # history file
 HISTSIZE=100000
 SAVEHIST=100000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.cache/zsh/hist
 BROWSER='/usr/bin/firefox'
 
 # Basic auto/tab complete:
@@ -120,13 +120,13 @@ bindkey -M menuselect "\r" .accept-line
 # make tab cycle the options (useful for autocomplete above)
 bindkey "\t" menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect "\t" menu-complete "$terminfo[kcbt]" reverse-menu-complete
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/dev/zsh-stuff/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/dev/zsh-stuff/zsh-history-substring-search/zsh-history-substring-search.zsh
 #
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-source ~/dev/zsh-stuff/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# source ~/dev/zsh-stuff/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # opam configuration
 [[ ! -r /home/daedalus/.opam/opam-init/init.zsh ]] || source /home/daedalus/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
@@ -135,3 +135,6 @@ source ~/dev/zsh-stuff/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_TRY_CLI_TELEMETRY_OPTOUT=1
+export ELIXIR_ERL_OPTIONS="-epmd_module Elixir.Livebook.EPMD"
+. /opt/asdf-vm/asdf.sh
+eval "$(zoxide init zsh)"

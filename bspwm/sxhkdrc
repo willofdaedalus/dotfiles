@@ -2,9 +2,20 @@
 # wm independent hotkeys
 #
 
+# expand/contract a window 
+super + shift + {h,j,k,l}
+  bspc node -z {left -20 0 || bspc node -z right -20 0, \
+                bottom 0 20 || bspc node -z top 0 20,\
+                top 0 -20 || bspc node -z bottom 0 -20,\
+                right 20 0 || bspc node -z left 20 0}
+
+# launch emacs
+super + e
+	emacsclient -c -a 'emacs'
+
 # terminal emulator
 super + Return
-	alacritty
+	kitty
 
 # program launcher
 super + d
@@ -14,7 +25,10 @@ super + d
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#
+# screenshots
+super + shift + l
+	escrotum -s -C
+
 # bspwm hotkeys
 #
 
@@ -37,6 +51,9 @@ super + y
 # swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window
+
+super + space
+	zen-browser
 
 #
 # state/flags
@@ -142,5 +159,5 @@ XF86AudioMute
 XF86AudioMicMute
     pactl set-source-mute @DEFAULT_SINK@ toggle
 
-super + shift + l
-    i3lock -u -k -e --date-str="%a %d %b %Y" --time-str="%H:%M" -i ~/media/wallpapers/wallhaven-3l2pp9.jpg -F
+# super + shift + l
+#     i3lock -u -k -e --date-str="%a %d %b %Y" --time-str="%H:%M" -i ~/media/wallpapers/wallhaven-3l2pp9.jpg -F
