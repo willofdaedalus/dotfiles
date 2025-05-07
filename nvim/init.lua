@@ -1,6 +1,5 @@
 -- Set <Space> as the leader key
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
 -- THICK CURSOR
 vim.opt.guicursor = "n-v-i-c:block-Cursor"
@@ -23,7 +22,6 @@ vim.opt.updatetime = 50      -- Faster UI response
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 4
 
--- Primeagen-Inspired Configs
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
@@ -41,18 +39,21 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.confirm = true
 
+vim.opt.clipboard = 'unnamedplus'
 -- Clipboard Sync with System
-vim.schedule(function()
-	vim.opt.clipboard = 'unnamedplus'
-end)
+vim.keymap.set('n', '<leader>x', ':!chmod +x %<CR>')
 
--- Keymaps
+-- -- yank to the clipboard
+-- vim.keymap.set({ "n", "v", "x" }, '<leader>y', '"+y')
+-- vim.keymap.set({ "n", "v", "x" }, '<leader>p', '"+p')
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear search highlight
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic Quickfix list' })
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus left' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus right' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus down' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus up' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
+
+
 
 -- Better Navigation & Editing
 vim.keymap.set('n', 'x', '"_x') -- Delete without yanking
@@ -71,3 +72,57 @@ vim.keymap.set('n', 'N', 'Nzz')
 
 -- Replace current word everywhere
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+
+require("catppuccin").setup({
+    integrations = {
+        cmp = true,
+        fzf = true,
+        gitsigns = true,
+        neogit = true,
+        harpoon = true,
+        treesitter = true,
+        treesitter_context = true,
+        native_lsp = {
+            enabled = true,
+            virtual_text = {
+                errors = { "italic" },
+                hints = { "italic" },
+                warnings = { "italic" },
+                information = { "italic" },
+                ok = { "italic" },
+            },
+            underlines = {
+                errors = { "underline" },
+                hints = { "underline" },
+                warnings = { "underline" },
+                information = { "underline" },
+                ok = { "underline" },
+            },
+            inlay_hints = {
+                background = true,
+            },
+        },
+    }
+})
+vim.cmd.colorscheme "catppuccin-macchiato"
+
+
+-- HARPOON STUFF
+local harpoon = require("harpoon")
+
+-- REQUIRED
+harpoon:setup()
+-- REQUIRED
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
